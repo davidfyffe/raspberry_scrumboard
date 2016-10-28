@@ -4,9 +4,9 @@ from time import sleep
 class Shifter():
 
     #inputA=15
-    inputB=13 #STCP
-    clock=6   #SHCP
-    clearPin=5 #latch MR
+    clock=13 #STCP 8-bit storage register pin 12
+    inputB=6   #SHCP 8-stage shift register pin 11
+    clearPin=5 #latch MR pin 10
 
 
     def __init__(self):
