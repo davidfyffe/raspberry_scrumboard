@@ -4,9 +4,12 @@ from time import sleep
 class Shifter():
 
     #inputA=15
-    clock=13 #STCP 8-bit storage register pin 12
-    inputB=6   #SHCP 8-stage shift register pin 11
-    clearPin=5 #latch MR pin 10
+    SHCPclock=6 #SHCP 8-stage shift register pin 11 clockpin
+    DSinput=26  #DS Serial Data input.
+    STCP=19 #STCP 8-bit storage register pin 12  register clock = latch
+    #clearPin=6 #latch MR pin 10
+
+    MR=5 #master reset  SRCLR
 
 
     def __init__(self):
@@ -14,25 +17,27 @@ class Shifter():
         self.pause=0
 
     def tick(self):
-        gpio.output(Shifter.clock,gpio.HIGH)
+        gpio.output(Shifter.SHCPclock,gpio.HIGH)
         sleep(self.pause)
-        gpio.output(Shifter.clock,gpio.LOW)
+        gpio.output(Shifter.SHCPclock,gpio.LOW)
         sleep(self.pause)
 
     def setValue(self,value):
+        print "Setting value", value
         for i in range(24):
             bitwise=0x800000>>i
             bit=bitwise&value
             if (bit==0):
-                gpio.output(Shifter.inputB,gpio.LOW)
+                gpio.output(Shifter.DSinput,gpio.LOW)
             else:
-                gpio.output(Shifter.inputB,gpio.HIGH)
+                gpio.output(Shifter.DSinput,gpio.HIGH)
             Shifter.tick(self)
+        gpio.output(Shifter.STCP, gpio.HIGH)
 
     def clear(self):
-        gpio.output(Shifter.clearPin,gpio.LOW)
+        gpio.output(Shifter.MR,gpio.LOW)
         Shifter.tick(self)
-        gpio.output(Shifter.clearPin,gpio.HIGH)
+        gpio.output(Shifter.MR,gpio.HIGH)
 
     def setupBoard(self):
 
@@ -41,14 +46,17 @@ class Shifter():
         #gpio.setup(Shifter.inputA,gpio.OUT)
         #gpio.output(Shifter.inputA,gpio.HIGH)
 
-        gpio.setup(Shifter.inputB,gpio.OUT)
-        gpio.output(Shifter.inputB,gpio.LOW)
+        gpio.setup(Shifter.DSinput,gpio.OUT)
+        gpio.output(Shifter.DSinput,gpio.LOW)
 
-        gpio.setup(Shifter.clock,gpio.OUT)
-        gpio.output(Shifter.clock,gpio.LOW)
+        gpio.setup(Shifter.SHCPclock,gpio.OUT)
+        gpio.output(Shifter.SHCPclock,gpio.LOW)
 
-        gpio.setup(Shifter.clearPin,gpio.OUT)
-        gpio.output(Shifter.clearPin,gpio.HIGH)
+        gpio.setup(Shifter.STCP,gpio.OUT)
+        gpio.output(Shifter.STCP,gpio.LOW)
+        
+        gpio.setup(Shifter.MR,gpio.OUT)
+        gpio.output(Shifter.MR,gpio.HIGH)
 
 
 # def main():
