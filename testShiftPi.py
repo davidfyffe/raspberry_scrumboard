@@ -20,9 +20,10 @@ def turnAllOff():
     shiftpi.digitalWrite(shiftpi.ALL, shiftpi.LOW)
     #shiftpi.delay(1000)
     
-def digitOne():
-    shiftpi.digitalWrite(2, shiftpi.HIGH)
-    shiftpi.digitalWrite(4, shiftpi.HIGH)
+def digitOne(shiftregister=0):
+    print shiftregister
+    shiftpi.digitalWrite(2+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(4+shiftregister, shiftpi.HIGH)
 
 def digitTwo():
     shiftpi.digitalWrite(0, shiftpi.HIGH)
@@ -65,7 +66,14 @@ def digitSeven():
     shiftpi.digitalWrite(6, shiftpi.HIGH)
     
 def digitEight():
-    shiftpi.digitalWrite(shiftpi.ALL, shiftpi.HIGH)
+    shiftpi.digitalWrite(0, shiftpi.HIGH)
+    shiftpi.digitalWrite(1, shiftpi.HIGH)
+    shiftpi.digitalWrite(2, shiftpi.HIGH)
+    shiftpi.digitalWrite(3, shiftpi.HIGH)
+    shiftpi.digitalWrite(4, shiftpi.HIGH)
+    shiftpi.digitalWrite(5, shiftpi.HIGH)
+    shiftpi.digitalWrite(6, shiftpi.HIGH)
+    shiftpi.digitalWrite(7, shiftpi.HIGH)
 
 def digitNine():
     shiftpi.digitalWrite(0, shiftpi.HIGH)
@@ -74,19 +82,50 @@ def digitNine():
     shiftpi.digitalWrite(3, shiftpi.HIGH)
     shiftpi.digitalWrite(6, shiftpi.HIGH)
     
-def digitZero():
-    shiftpi.digitalWrite(0, shiftpi.HIGH)
-    shiftpi.digitalWrite(1, shiftpi.HIGH)
-    shiftpi.digitalWrite(2, shiftpi.HIGH)
-    shiftpi.digitalWrite(4, shiftpi.HIGH)
-    shiftpi.digitalWrite(5, shiftpi.HIGH)
-    shiftpi.digitalWrite(6, shiftpi.HIGH)
-    shiftpi.digitalWrite(7, shiftpi.HIGH)
-    
-#shiftpi.pinsSetup({"ser": SER_PIN, "rclk": RCLK_PIN, "srclk": SRCLK_PIN}) # that's it
+def digitZero(shiftregister=0):
+    shiftpi.digitalWrite(0+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(1+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(2+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(4+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(5+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(6+shiftregister, shiftpi.HIGH)
+    shiftpi.digitalWrite(7+shiftregister, shiftpi.HIGH)
 
-#turnSegOn(0)
+def digitTen():
+    digitOne(0);
+    digitZero(8);
+    
+def digitEleven():
+    digitOne(0)
+    digitOne(8)
+    '''shiftpi.digitalWrite(2, shiftpi.HIGH)
+    shiftpi.digitalWrite(4, shiftpi.HIGH)
+    shiftpi.digitalWrite(10, shiftpi.HIGH)
+    shiftpi.digitalWrite(12, shiftpi.HIGH)'''
+    #shiftpi.digitalWrite(12, shiftpi.HIGH)
+    #shiftpi.digitalWrite(6, shiftpi.HIGH)
+    #shiftpi.digitalWrite(7, shiftpi.HIGH)
+
+def testStuff(self, displayDigit):
+        
+        value = 'b'
+        x = 1
+        
+        result= {
+                 'a':lambda x:x * 5,
+                 'b':lambda x: x+7 
+                 }[value](x)
+         
+        print value
+        print x     
+        print result  
+        
+shiftpi.shiftRegisters(2)
+DELAY=500
+turnAllOn()
+#shiftpi.pinsSetup({"ser": SER_PIN, "rclk": RCLK_PIN, "srclk": SRCLK_PIN}) # that's itturnSegOn(0)
 #turnSegOn(1)
+#shiftpi.delay(2000)
 #turnSegOn(2)
 #turnSegOn(3)
 #turnSegOn(4)
@@ -97,38 +136,43 @@ def digitZero():
 #turnAllOff()
 #turnAllOn()
 turnAllOff()
-
-#digitOne()
-#shiftpi.delay(1000)
-#turnAllOff()
-#digitTwo()
-#shiftpi.delay(1000)
-#turnAllOff()
-#digitThree()
-#shiftpi.delay(1000)
-#turnAllOff()
-#digitFour()
-#shiftpi.delay(1000)
-#turnAllOff()
+digitZero()
+shiftpi.delay(DELAY)
+turnAllOff()
+digitOne()
+shiftpi.delay(DELAY)
+turnAllOff()
+digitTwo()
+shiftpi.delay(DELAY)
+turnAllOff()
+digitThree()
+shiftpi.delay(DELAY)
+turnAllOff()
+digitFour()
+shiftpi.delay(DELAY)
+turnAllOff()
 digitFive()
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
 digitSix()
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
 digitSeven()
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
 digitEight()
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
 digitNine()
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
-digitZero()
+digitTen()
+shiftpi.delay(DELAY)
+turnAllOff()
+digitEleven()
 
 
-shiftpi.delay(1000)
+shiftpi.delay(DELAY)
 turnAllOff()
 
 
