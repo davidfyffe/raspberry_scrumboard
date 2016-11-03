@@ -42,7 +42,6 @@ class CathodeController(object):
                 self.digitZero(bitAddition)
                 break
             if case(1):
-                print "case one"
                 self.digitOne(bitAddition)
                 break
             if case(2):
@@ -86,15 +85,12 @@ class CathodeController(object):
     def turnAllOn(self):
         # turns all shift register pins to HIGH
         shiftpi.digitalWrite(shiftpi.ALL, shiftpi.HIGH)
-        #shiftpi.delay(1000)
 
     def turnAllOff(self):
         # turns all shift register pins to LOW
         shiftpi.digitalWrite(shiftpi.ALL, shiftpi.LOW)
-        #shiftpi.delay(1000)
         
     def digitOne(self, shiftregister=0):
-        #print "shiftregister 1", shiftregister
         shiftpi.digitalWrite(2+shiftregister, shiftpi.HIGH)
         shiftpi.digitalWrite(4+shiftregister, shiftpi.HIGH)
 
