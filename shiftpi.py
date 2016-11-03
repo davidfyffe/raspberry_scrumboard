@@ -82,7 +82,7 @@ def shiftRegisters(num):
     _all(LOW)
 
 def digitalWrite(pin, mode):
-    print "digital write"
+    #print "digital write"
     '''
     Allows the user to set the state of a pin on the shift register
     '''

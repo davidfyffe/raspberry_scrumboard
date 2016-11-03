@@ -6,6 +6,7 @@ dutyCycleFullLeft = 15
 dutyCycleTDC = 8
 currentServoPositionValue = 0.0
 currentCathodeValue = 0
+cathodeController = CathodeController()
     
 def incrementServoAmount():
     global currentServoPositionValue
@@ -57,13 +58,14 @@ def cathodeCallBack(channel, increment):
     print "Edge detected on channel ", channel
     if increment == 'up':
         incrementCathode()
-        print "Incremented to {}".format(currentCathodeValue)
+        #print "Incremented to {}".format(currentCathodeValue)
     elif increment == 'down':
         decrementCathode()
-        print "Decremented to {}".format(currentCathodeValue)
+        #print "Decremented to {}".format(currentCathodeValue)
     else:
         print "reset counter"
         currentCathodeValue = 0
-     CathodeController.displayNumber(currentCathodeValue)   
+        
+    cathodeController.displayNumber(currentCathodeValue)
 
         

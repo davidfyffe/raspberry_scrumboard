@@ -17,7 +17,7 @@ class CathodeController(object):
         Constructor
         '''
         shiftpi.shiftRegisters(2)
-        print "constructor"
+        self.turnAllOff()
     
     def displayNumber(self, number):
         
@@ -72,14 +72,9 @@ class CathodeController(object):
                 print "something else!"
                 # No need to break here, it'll stop anyway
     
-    '''def turnSegOn(pinid):
-        shiftpi.digitalWrite(pinid, shiftpi.HIGH)
-        shiftpi.delay(500)
-        shiftpi.digitalWrite(pinid, shiftpi.LOW)
-        shiftpi.delay(500)'''
         
     def turnSegOn(self, pinId):
-        print "Turn on seg {}".format(pinId)
+        #print "Turn on seg {}".format(pinId)
         shiftpi.digitalWrite(pinId, shiftpi.HIGH)
 
     def turnAllOn(self):
@@ -91,8 +86,8 @@ class CathodeController(object):
         shiftpi.digitalWrite(shiftpi.ALL, shiftpi.LOW)
         
     def digitOne(self, shiftregister=0):
-        shiftpi.digitalWrite(2+shiftregister, shiftpi.HIGH)
-        shiftpi.digitalWrite(4+shiftregister, shiftpi.HIGH)
+        self.turnSegOn(2+shiftregister)
+        self.turnSegOn(4+shiftregister)
 
     def digitTwo(self, shiftregister=0):
         self.turnSegOn(0+shiftregister)

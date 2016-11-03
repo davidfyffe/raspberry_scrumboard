@@ -33,8 +33,8 @@ import MainLogicController as mainController
 
 def main():
     
-    YELLOWUP=1
-    YELLOWDOWN=2
+    YELLOWUP=18
+    YELLOWDOWN=23
     BLUELED = 22
     BLUESWITCH = 27
     REDLED = 23
@@ -43,16 +43,20 @@ def main():
     GREENSWITCH = 6
     
     yellowUpButton = CathodeButton(YELLOWUP)
+    yellowUpButton.setIncrementType('up')
     yellowDownButton = CathodeButton(YELLOWDOWN)
-    blueButton = ServoButton(BLUESWITCH)
-    greenButton = ServoButton(GREENSWITCH)
-    redButton = ServoButton(REDSWITCH)
+    yellowDownButton.setIncrementType('down')
+    #blueButton = ServoButton(BLUESWITCH)
+    #greenButton = ServoButton(GREENSWITCH)
+    #redButton = ServoButton(REDSWITCH)
     
     
     running=True
     while running==True:
             try:
-                print ""
+                '''
+                '''
+                #print "running"
             
             except KeyboardInterrupt:
                 running=False

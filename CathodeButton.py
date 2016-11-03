@@ -8,7 +8,8 @@ class CathodeButton(ButtonController):
     
     def myCallBack(self, channel):
             print "Button Controller: Cathode Button pressed"
-            mainlogic.cathodeCallBack(channel, self.increment)
+            inc = super(CathodeButton, self).getIncrementType()
+            mainlogic.cathodeCallBack(channel, inc)
         
 '''
 a = CathodeButton(15)
